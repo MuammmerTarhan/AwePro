@@ -2,6 +2,7 @@ import React from 'react';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'i18next';
 import xhrBackend from 'i18next-xhr-backend';
+import 'intl-pluralrules';
 import Navigator from './src/Navigator'; // Import your Navigator component
 import { useTranslation } from 'react-i18next'; // Import the useTranslation hook
 

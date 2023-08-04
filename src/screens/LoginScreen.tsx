@@ -5,6 +5,22 @@ import { useTranslation } from 'react-i18next';
 import { makeRequest } from './../api';
 import { globalStyles } from '../styles';
 
+interface LanguageOptionProps {
+  title: string;
+  onPress: () => void;
+  selected: boolean;
+}
+
+const LanguageOption: React.FC<LanguageOptionProps> = ({ title, onPress, selected }) => {
+  return (
+    <Button
+      title={title}
+      onPress={onPress}
+      color={selected ? 'blue' : 'grey'}
+    />
+  );
+};
+
 const LoginScreen: React.FC = () => {
   const navigation = useNavigation();
   const { t, i18n } = useTranslation();
@@ -85,8 +101,17 @@ const LoginScreen: React.FC = () => {
         <Button title={t('loginScreen.forgetPasswordButton')} onPress={handleForgetPassword} />
       </View>
       <View style={globalStyles.languageContainer}>
-        <Button title="English" onPress={() => handleChangeLanguage('en')} />
-        <Button title="Français" onPress={() => handleChangeLanguage('fr')} />
+        <Text style={globalStyles.languageText}>Choose Language:</Text>
+        <LanguageOption
+          title="English"
+          onPress={() => handleChangeLanguage('en')}
+          selected={i18n.language === 'en'}
+        />
+        <LanguageOption
+          title="Français"
+          onPress={() => handleChangeLanguage('fr')}
+          selected={i18n.language === 'fr'}
+        />
       </View>
     </View>
   );

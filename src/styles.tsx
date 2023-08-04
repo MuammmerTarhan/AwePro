@@ -45,8 +45,14 @@ export const globalStyles = StyleSheet.create({
     paddingBottom: 8,
   },
   languageContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 16,
+    marginTop: 20,
+    alignItems: 'center',
+  },
+  languageText: {
+    marginBottom: 10,
+    fontWeight: 'bold',
+  },
+  languageOption: {
+    marginBottom: 10,
   },
 });
