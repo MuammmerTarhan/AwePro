@@ -9,6 +9,7 @@
     "forgetPasswordButton": "Mot de passe oublié",
     "successTitle": "Succès",
     "successMessage": "Connexion réussie !",
+    "loginSuccess":"Connexion réussie !",
     "errorTitle": "Erreur"
   },
   "homeScreen": {

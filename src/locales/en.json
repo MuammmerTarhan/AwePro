@@ -9,6 +9,7 @@
     "forgetPasswordButton": "Forget Password",
     "successTitle": "Success",
     "successMessage": "Login successful!",
+    "loginSuccess":"Login successful!",
     "errorTitle": "Error"
   },
   "homeScreen": {
