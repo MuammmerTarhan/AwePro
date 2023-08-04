@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import { makeRequest } from './../api';
 import { globalStyles } from '../styles';
 
 const LoginScreen: React.FC = () => {
   const navigation = useNavigation();
+  const { t, i18n } = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [accessToken, setAccessToken] = useState('');
@@ -21,16 +23,15 @@ const LoginScreen: React.FC = () => {
       console.log('User Data:', user);
       console.log('Access Token:', accessToken);
 
-      // Set the access token in the state
       setAccessToken(accessToken);
 
       if (user.role.name === 'Admin') {
-        navigation.navigate('AdminScreen', { accessToken }); // Pass the accessToken to the AdminScreen
+        navigation.navigate('AdminScreen', { accessToken });
       } else {
         navigation.navigate('Home', { name: user.name });
       }
 
-      Alert.alert('Success', 'Login successful!');
+      Alert.alert('Success', t('loginScreen.loginSuccess'));
     } catch (error: any) {
       Alert.alert('Error', error.message);
     }
@@ -44,15 +45,19 @@ const LoginScreen: React.FC = () => {
     navigation.navigate('ForgetPassword');
   };
 
+  const handleChangeLanguage = (language: string) => {
+    i18n.changeLanguage(language);
+  };
+
   return (
     <View style={globalStyles.container}>
-      <Text style={globalStyles.text}>Welcome to Delta</Text>
+      <Text style={globalStyles.text}>{t('loginScreen.welcome')}</Text>
       <View style={globalStyles.inputContainer}>
-        <Text style={globalStyles.label}>Email:</Text>
+        <Text style={globalStyles.label}>{t('loginScreen.email')}</Text>
         <View style={globalStyles.inputBox}>
           <TextInput
             style={globalStyles.input}
-            placeholder="Enter your email"
+            placeholder={t('')}
             keyboardType="email-address"
             autoCapitalize="none"
             value={email}
@@ -61,11 +66,11 @@ const LoginScreen: React.FC = () => {
         </View>
       </View>
       <View style={globalStyles.inputContainer}>
-        <Text style={globalStyles.label}>Password:</Text>
+        <Text style={globalStyles.label}>{t('loginScreen.password')}</Text>
         <View style={globalStyles.inputBox}>
           <TextInput
             style={globalStyles.input}
-            placeholder="Enter your password"
+            placeholder={t('')}
             secureTextEntry
             value={password}
             onChangeText={setPassword}
@@ -73,15 +78,18 @@ const LoginScreen: React.FC = () => {
         </View>
       </View>
       <View style={globalStyles.buttonsContainer}>
-        <Button title="Login" onPress={handleLogin} />
+        <Button title={t('loginScreen.loginButton')} onPress={handleLogin} />
       </View>
       <View style={globalStyles.buttonsContainer}>
-        <Button title="Activate User" onPress={handleActivateUser} />
-        <Button title="Forget Password" onPress={handleForgetPassword} />
+        <Button title={t('loginScreen.activateUserButton')} onPress={handleActivateUser} />
+        <Button title={t('loginScreen.forgetPasswordButton')} onPress={handleForgetPassword} />
+      </View>
+      <View style={globalStyles.languageContainer}>
+        <Button title="English" onPress={() => handleChangeLanguage('en')} />
+        <Button title="Français" onPress={() => handleChangeLanguage('fr')} />
       </View>
     </View>
   );
 };
-
 
 export default LoginScreen;

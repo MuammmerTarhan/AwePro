@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { useTranslation } from 'react-i18next'; // Import the useTranslation hook
 import { globalStyles } from '../styles';
-
 import config from './../confic';
 
 const ForgetPasswordScreen: React.FC = () => {
+  const { t } = useTranslation(); // Initialize the useTranslation hook
+
   const [email, setEmail] = useState('');
 
   const handleForgetPassword = async () => {
@@ -24,26 +26,26 @@ const ForgetPasswordScreen: React.FC = () => {
 
       if (response.ok) {
         // If the request is successful, display a success message
-        Alert.alert('Success', 'Password reset email sent successfully.');
+        Alert.alert(t('forgetPasswordScreen.successTitle'), t('forgetPasswordScreen.successMessage'));
       } else {
         // If the request fails, display an error message with the error details from the API
-        Alert.alert('Error', data.message || 'An error occurred while processing your request.');
+        Alert.alert(t('forgetPasswordScreen.errorTitle'), data.message || t('forgetPasswordScreen.defaultErrorMessage'));
       }
     } catch (error) {
       // Handle any network or other errors that might occur
-      Alert.alert('Error', 'An error occurred while processing your request.');
+      Alert.alert(t('forgetPasswordScreen.errorTitle'), t('forgetPasswordScreen.defaultErrorMessage'));
     }
   };
 
   return (
     <View style={globalStyles.container}>
-      <Text style={globalStyles.text}>Forget Password</Text>
+      <Text style={globalStyles.text}>{t('forgetPasswordScreen.title')}</Text>
       <View style={globalStyles.inputContainer}>
-        <Text style={globalStyles.label}>Email:</Text>
+        <Text style={globalStyles.label}>{t('forgetPasswordScreen.email')}</Text>
         <View style={globalStyles.inputBox}>
           <TextInput
             style={globalStyles.input}
-            placeholder="Enter your email"
+            placeholder={t('')}
             onChangeText={(text) => setEmail(text)}
             value={email}
             keyboardType="email-address"
@@ -51,7 +53,7 @@ const ForgetPasswordScreen: React.FC = () => {
           />
         </View>
       </View>
-      <Button title="Forget Password" onPress={handleForgetPassword} />
+      <Button title={t('forgetPasswordScreen.resetPasswordButton')} onPress={handleForgetPassword} />
     </View>
   );
 };

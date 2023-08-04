@@ -1,0 +1,46 @@
+{
+  "loginScreen": {
+    "title": "Connexion",
+    "welcome": "Bienvenue chez Delta",
+    "email": "Email",
+    "password": "Mot de passe",
+    "loginButton": "Se connecter",
+    "activateUserButton": "Activer l'utilisateur",
+    "forgetPasswordButton": "Mot de passe oublié",
+    "successTitle": "Succès",
+    "successMessage": "Connexion réussie !",
+    "errorTitle": "Erreur"
+  },
+  "homeScreen": {
+    "welcome": "Bienvenue, {{name}} !"
+  },
+  "adminScreen": {
+    "title": "Ecran Admin",
+    "email": "Email :",
+    "name": "Nom :",
+    "surname": "Prénom :",
+    "department": "Département :",
+    "company": "Entreprise :",
+    "role": "Rôle :",
+    "addUserButton": "Ajouter un utilisateur",
+    "successTitle": "Succès",
+    "successMessage": "Utilisateur ajouté avec succès !",
+    "errorTitle": "Erreur"
+  },
+  "activateUserScreen": {
+    "title": "Activer l'utilisateur",
+    "email": "Email :",
+    "activateButton": "Activer l'utilisateur",
+    "successTitle": "Succès",
+    "successMessage": "Email d'activation envoyé avec succès !",
+    "errorTitle": "Erreur"
+  },
+  "forgetPasswordScreen": {
+    "title": "Mot de passe oublié",
+    "email": "Email :",
+    "resetPasswordButton": "Réinitialiser le mot de passe",
+    "successTitle": "Succès",
+    "successMessage": "Email de réinitialisation envoyé avec succès !",
+    "errorTitle": "Erreur"
+  }
+}

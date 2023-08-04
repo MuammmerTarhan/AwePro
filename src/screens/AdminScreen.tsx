@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, ScrollView, Alert } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { useNavigation, RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import axios from 'axios';
@@ -18,6 +19,8 @@ type AdminScreenProps = {
 
 const AdminScreen: React.FC<AdminScreenProps> = ({ route, navigation }) => {
   const { accessToken } = route.params; // Get the accessToken from the route params
+
+  const { t } = useTranslation();
 
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
@@ -43,21 +46,21 @@ const AdminScreen: React.FC<AdminScreenProps> = ({ route, navigation }) => {
     });
       
       console.log('New User:', response.data);
-      Alert.alert('Success', 'User added successfully!');
+      Alert.alert(t('adminScreen.successTitle'), t('adminScreen.successMessage'));
     } catch (error: any) {
-      Alert.alert('Error', error.message);
+      Alert.alert(t('adminScreen.errorTitle'), error.message);
     }
   };
 
   return (
     <View style={globalStyles.container}>
-      <Text style={globalStyles.text}>Admin Screen</Text>
+      <Text style={globalStyles.text}>{t('adminScreen.title')}</Text>
       <View style={globalStyles.inputContainer}>
-        <Text style={globalStyles.label}>Email:</Text>
+        <Text style={globalStyles.label}>{t('adminScreen.email')}</Text>
         <View style={globalStyles.inputBox}>
           <TextInput
             style={globalStyles.input}
-            placeholder="Enter user's email"
+            placeholder=""
             keyboardType="email-address"
             autoCapitalize="none"
             onChangeText={(text) => setEmail(text)}
@@ -66,61 +69,61 @@ const AdminScreen: React.FC<AdminScreenProps> = ({ route, navigation }) => {
         </View>
       </View>
       <View style={globalStyles.inputContainer}>
-        <Text style={globalStyles.label}>Name:</Text>
+        <Text style={globalStyles.label}>{t('adminScreen.name')}</Text>
         <View style={globalStyles.inputBox}>
           <TextInput
             style={globalStyles.input}
-            placeholder="Enter user's name"
+            placeholder=""
             onChangeText={(text) => setName(text)}
             value={name}
           />
         </View>
       </View>
       <View style={globalStyles.inputContainer}>
-        <Text style={globalStyles.label}>Surname:</Text>
+        <Text style={globalStyles.label}>{t('adminScreen.surname')}</Text>
         <View style={globalStyles.inputBox}>
           <TextInput
             style={globalStyles.input}
-            placeholder="Enter user's surname"
+            placeholder=""
             onChangeText={(text) => setSurname(text)}
             value={surname}
           />
         </View>
       </View>
       <View style={globalStyles.inputContainer}>
-        <Text style={globalStyles.label}>Department:</Text>
+        <Text style={globalStyles.label}>{t('adminScreen.department')}</Text>
         <View style={globalStyles.inputBox}>
           <TextInput
             style={globalStyles.input}
-            placeholder="Enter user's department"
+            placeholder=""
             onChangeText={(text) => setDepartment(text)}
             value={department}
           />
         </View>
       </View>
       <View style={globalStyles.inputContainer}>
-        <Text style={globalStyles.label}>Company:</Text>
+        <Text style={globalStyles.label}>{t('adminScreen.company')}</Text>
         <View style={globalStyles.inputBox}>
           <TextInput
             style={globalStyles.input}
-            placeholder="Enter user's company"
+            placeholder=""
             onChangeText={(text) => setCompany(text)}
             value={company}
           />
         </View>
       </View>
       <View style={globalStyles.inputContainer}>
-        <Text style={globalStyles.label}>Role:</Text>
+        <Text style={globalStyles.label}>{t('adminScreen.role')}</Text>
         <View style={globalStyles.inputBox}>
           <TextInput
             style={globalStyles.input}
-            placeholder="Enter role"
+            placeholder=""
             onChangeText={(text) => setRole(text)}
             value={role}
           />
         </View>
       </View>
-      <Button title="Add User" onPress={handleAddUser} />
+      <Button title={t('adminScreen.addUserButton')} onPress={handleAddUser} />
     </View>
   );
 };

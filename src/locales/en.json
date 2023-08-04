@@ -1,0 +1,46 @@
+{
+  "loginScreen": {
+    "title": "Login",
+    "welcome": "Welcome to Delta",
+    "email": "Email",
+    "password": "Password",
+    "loginButton": "Login",
+    "activateUserButton": "Activate User",
+    "forgetPasswordButton": "Forget Password",
+    "successTitle": "Success",
+    "successMessage": "Login successful!",
+    "errorTitle": "Error"
+  },
+  "homeScreen": {
+    "welcome": "Welcome, {{name}} !"
+  },
+  "adminScreen": {
+    "title": "Admin Screen",
+    "email": "Email:",
+    "name": "Name:",
+    "surname": "Surname:",
+    "department": "Department:",
+    "company": "Company:",
+    "role": "Role:",
+    "addUserButton": "Add User",
+    "successTitle": "Success",
+    "successMessage": "User added successfully!",
+    "errorTitle": "Error"
+  },
+  "activateUserScreen": {
+    "title": "Activate User",
+    "email": "Email:",
+    "activateButton": "Activate User",
+    "successTitle": "Success",
+    "successMessage": "User activation email sent successfully!",
+    "errorTitle": "Error"
+  },
+  "forgetPasswordScreen": {
+    "title": "Forget Password",
+    "email": "Email:",
+    "resetPasswordButton": "Reset Password",
+    "successTitle": "Success",
+    "successMessage": "Password reset email sent successfully!",
+    "errorTitle": "Error"
+  }
+}

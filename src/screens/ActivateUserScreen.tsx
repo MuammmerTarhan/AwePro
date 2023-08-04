@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import config from './../confic';
 import { globalStyles } from '../styles';
 
 const ActivateUserScreen: React.FC = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
 
   const handleActivateUser = async () => {
@@ -23,26 +25,26 @@ const ActivateUserScreen: React.FC = () => {
 
       if (response.ok) {
         // If the request is successful, display a success message
-        Alert.alert('Success', 'User activation email sent successfully.');
+        Alert.alert(t('activateUserScreen.successTitle'), t('activateUserScreen.successMessage'));
       } else {
         // If the request fails, display an error message with the error details from the API
-        Alert.alert('Error', data.message || 'An error occurred while processing your request.');
+        Alert.alert(t('activateUserScreen.errorTitle'), data.message || t('activateUserScreen.errorMessage'));
       }
     } catch (error) {
       // Handle any network or other errors that might occur
-      Alert.alert('Error', 'An error occurred while processing your request.');
+      Alert.alert(t('activateUserScreen.errorTitle'), t('activateUserScreen.networkErrorMessage'));
     }
   };
 
   return (
     <View style={globalStyles.container}>
-      <Text style={globalStyles.text}>Activate User</Text>
+      <Text style={globalStyles.text}>{t('activateUserScreen.title')}</Text>
       <View style={globalStyles.inputContainer}>
-        <Text style={globalStyles.label}>Email:</Text>
+        <Text style={globalStyles.label}>{t('activateUserScreen.email')}</Text>
         <View style={globalStyles.inputBox}>
           <TextInput
             style={globalStyles.input}
-            placeholder="Enter your email"
+            placeholder={t('')}
             onChangeText={(text) => setEmail(text)}
             value={email}
             keyboardType="email-address"
@@ -50,7 +52,7 @@ const ActivateUserScreen: React.FC = () => {
           />
         </View>
       </View>
-      <Button title="Activate User" onPress={handleActivateUser} />
+      <Button title={t('activateUserScreen.activateButton')} onPress={handleActivateUser} />
     </View>
   );
 };

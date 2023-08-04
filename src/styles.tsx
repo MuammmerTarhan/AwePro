@@ -44,4 +44,9 @@ export const globalStyles = StyleSheet.create({
     borderBottomColor: '#ccc',
     paddingBottom: 8,
   },
+  languageContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 16,
+  },
 });
