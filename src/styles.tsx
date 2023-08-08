@@ -55,4 +55,38 @@ export const globalStyles = StyleSheet.create({
   languageOption: {
     marginBottom: 10,
   },
+  dropdown: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 4,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    width: 200,
+    alignItems: 'center',
+  },
+  dropdownText: {
+    fontSize: 16,
+  },
+  dropdownDropdown: {
+    marginTop: -1,
+    borderRadius: 3,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    width: 200,
+  },
+  userContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  userText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  userHeaderText: {
+    flex: 1,
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
 });
