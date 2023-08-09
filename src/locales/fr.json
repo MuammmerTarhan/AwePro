@@ -43,5 +43,11 @@
     "successTitle": "Succès",
     "successMessage": "Email de réinitialisation envoyé avec succès !",
     "errorTitle": "Erreur"
+  },
+  "userListScreen": {
+    "title": "Liste des utilisateurs",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "options": "Options"
   }
 }

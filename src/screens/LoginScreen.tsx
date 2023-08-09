@@ -42,7 +42,7 @@ const LoginScreen: React.FC = () => {
       setAccessToken(accessToken);
 
       if (user.role.name === 'Admin') {
-        navigation.navigate('AdminScreen', { accessToken });
+        navigation.navigate('AdminScreen', { accessToken ,name: user.name });
       } else {
         navigation.navigate('Home', { name: user.name });
       }

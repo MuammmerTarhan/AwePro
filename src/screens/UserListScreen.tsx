@@ -21,6 +21,7 @@ const UserListScreen: React.FC<UserListScreenProps> = ({ route, navigation }) =>
   const { t } = useTranslation();
 
   const [users, setUsers] = useState<any[]>([]);
+  const [sortConfig, setSortConfig] = useState({ key: '', direction: 'asc' });
 
   const fetchAllUsers = async () => {
     try {
@@ -39,6 +40,16 @@ const UserListScreen: React.FC<UserListScreenProps> = ({ route, navigation }) =>
   }, []);
 
   const filteredUsers = users.filter(user => user.email && user.email !== 'N/A');
+
+  const sortedUsers = [...filteredUsers].sort((a, b) => {
+    if (a[sortConfig.key] < b[sortConfig.key]) {
+      return sortConfig.direction === 'asc' ? -1 : 1;
+    }
+    if (a[sortConfig.key] > b[sortConfig.key]) {
+      return sortConfig.direction === 'asc' ? 1 : -1;
+    }
+    return 0;
+  });
 
   const handleUpdateUser = (userId: number) => {
     // Implement the logic to navigate to the update screen with user details
@@ -59,18 +70,34 @@ const UserListScreen: React.FC<UserListScreenProps> = ({ route, navigation }) =>
     }
   };
 
+  const handleSort = (key: string) => {
+    if (sortConfig.key === key) {
+      setSortConfig({
+        key,
+        direction: sortConfig.direction === 'asc' ? 'desc' : 'asc',
+      });
+    } else {
+      setSortConfig({ key, direction: 'asc' });
+    }
+  };
+
   return (
     <View style={globalStyles.container}>
       <Text style={globalStyles.text}>{t('adminScreen.title')}</Text>
       <FlatList
-        data={[{ isHeader: true }, ...filteredUsers]}
+        data={[{ isHeader: true }, ...sortedUsers]}
         renderItem={({ item }) => {
           if (item.isHeader) {
             // Render the header row
             return (
               <View style={[globalStyles.tableRow, globalStyles.tableHeader]}>
                 <Text style={globalStyles.tableCell}>ID</Text>
-                <Text style={globalStyles.tableCell}>Name</Text>
+                <Text style={globalStyles.tableCell} onPress={() => handleSort('name')}>
+                  Name{' '}
+                  {sortConfig.key === 'name' && (
+                    <Text>{sortConfig.direction === 'asc' ? '▲' : '▼'}</Text>
+                  )}
+                </Text>
                 <Text style={globalStyles.tableCell}>Surname</Text>
                 <Text style={globalStyles.tableCell}>Role</Text>
                 <Text style={globalStyles.tableCell}>Email</Text>
