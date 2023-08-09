@@ -6,9 +6,9 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import axios from 'axios';
 import { globalStyles } from '../styles'; // Import your style definitions
 
-type RootStackParamList = {
+export type RootStackParamList = {
   UserListScreen: { accessToken: string };
-  UpdateUserScreen: { userId: number };
+  EditPopupScreen: { userId: number; accessToken: string }; 
 };
 
 type UserListScreenProps = {
@@ -52,8 +52,8 @@ const UserListScreen: React.FC<UserListScreenProps> = ({ route, navigation }) =>
   });
 
   const handleUpdateUser = (userId: number) => {
-    // Implement the logic to navigate to the update screen with user details
-    navigation.navigate('UpdateUserScreen', { userId });
+    console.log('accessToken in handleUpdateUser:', accessToken);
+    navigation.navigate('EditPopupScreen', { userId, accessToken });
   };
 
   const handleDeleteUser = async (userId: number) => {
