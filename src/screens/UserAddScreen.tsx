@@ -111,34 +111,6 @@ const UserAddScreen: React.FC<UserAddScreenProps> = ({ route, navigation }) => {
     Manager: 1,
   };
 
-  // Render the header for the user data table
-  const renderTableHeader = () => (
-    <View style={globalStyles.userContainer}>
-      <Text style={globalStyles.userHeaderText}>ID</Text>
-      <Text style={globalStyles.userHeaderText}>Name</Text>
-      <Text style={globalStyles.userHeaderText}>Surname</Text>
-      <Text style={globalStyles.userHeaderText}>Role</Text>
-      <Text style={globalStyles.userHeaderText}>Email</Text>
-      <Text style={globalStyles.userHeaderText}>Department</Text>
-      <Text style={globalStyles.userHeaderText}>Company</Text>
-      {/* Add other header columns here */}
-    </View>
-  );
-
-  // Render the list of users using FlatList
-  const renderUserItem = ({ item }: { item: any }) => (
-    <View style={globalStyles.userContainer}>
-      <Text style={globalStyles.userText}>{item.id}</Text>
-      <Text style={globalStyles.userText}>{item.name || 'N/A'}</Text>
-      <Text style={globalStyles.userText}>{item.surname || 'N/A'}</Text>
-      <Text style={globalStyles.userText}>{item.role?.name || 'N/A'}</Text>
-      <Text style={globalStyles.userText}>{item.email || 'N/A'}</Text>
-      <Text style={globalStyles.userText}>{item.department?.name || 'N/A'}</Text>
-      <Text style={globalStyles.userText}>{item.company?.name || 'N/A'}</Text>
-      {/* Add other user details here */}
-    </View>
-  );
-
   return (
     <View style={globalStyles.container}>
       <Text style={globalStyles.text}>{t('adminScreen.title')}</Text>
@@ -219,19 +191,6 @@ const UserAddScreen: React.FC<UserAddScreenProps> = ({ route, navigation }) => {
       </View>
       <Button title={t('adminScreen.addUserButton')} onPress={handleAddUser} />
 
-      {/* Render the header */}
-      {renderTableHeader()}
-
-      {/* Render the list of users */}
-      {users.length > 0 ? (
-        <FlatList
-          data={users}
-          renderItem={renderUserItem}
-          keyExtractor={(item) => item.id.toString()}
-        />
-      ) : (
-        <Text style={globalStyles.userText}>No Data</Text>
-      )}
     </View>
   );
 };
