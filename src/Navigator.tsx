@@ -7,6 +7,8 @@ import HomeScreen from './screens/HomeScreen';
 import AdminScreen from './screens/AdminScreen';
 import ActivateUserScreen from './screens/ActivateUserScreen';
 import ForgetPasswordScreen from './screens/ForgetPasswordScreen';
+import UserAddScreen from './screens/UserAddScreen';
+import UserListScreen from './screens/UserListScreen';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -14,6 +16,8 @@ export type RootStackParamList = {
   AdminScreen: { accessToken: string }; // Pass accessToken as a parameter
   ActivateUser: undefined;
   ForgetPassword: undefined;
+  UserAddScreen: undefined;
+  UserListScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -32,7 +36,9 @@ const Navigator: React.FC = () => {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={({ route }) => ({ title: t('homeScreen.welcomeMessage', { name: route.params.name }) })}
+          options={({ route }) => ({
+            title: t('homeScreen.welcomeMessage', { name: route.params.name }),
+          })}
         />
         <Stack.Screen
           name="AdminScreen"
@@ -48,6 +54,16 @@ const Navigator: React.FC = () => {
           name="ForgetPassword"
           component={ForgetPasswordScreen}
           options={{ title: t('loginScreen.forgetPasswordButton') }}
+        />
+        <Stack.Screen
+          name="UserAddScreen"
+          component={UserAddScreen}
+          options={{ title: t('userAddScreen.title') }}
+        />
+        <Stack.Screen
+          name="UserListScreen"
+          component={UserListScreen}
+          options={{ title: t('userListScreen.title') }}
         />
       </Stack.Navigator>
     </NavigationContainer>

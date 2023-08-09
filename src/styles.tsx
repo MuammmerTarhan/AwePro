@@ -89,4 +89,25 @@ export const globalStyles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  tableHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: '#f0f0f0',
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    marginBottom: 5,
+  },
+  tableRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+  tableCell: {
+    fontSize: 12,
+    paddingHorizontal: 10,
+  },
+
 });
