@@ -31,7 +31,7 @@ const LoginScreen: React.FC = () => {
   const handleLogin = async () => {
     try {
       // Assuming you have a way to retrieve the oneSignalId
-      const oneSignalId = 'someOneSignalId'; // Replace with actual retrieval logic
+      const oneSignalId = 'cbeb50d3-1f72-4dc8-a111-6fa09ef071af'; // Replace with actual retrieval logic
   
       const response = await makeRequest('post', `/auth/login?oneSignalId=${oneSignalId}`, {
         email: email,
