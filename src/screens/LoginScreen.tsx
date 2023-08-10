@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { makeRequest } from './../api';
 import { globalStyles } from '../styles';
-
+import OneSignal from 'react-native-onesignal';
 interface LanguageOptionProps {
   title: string;
   onPress: () => void;
@@ -30,8 +30,13 @@ const LoginScreen: React.FC = () => {
 
   const handleLogin = async () => {
     try {
-      // Assuming you have a way to retrieve the oneSignalId
-      const oneSignalId = 'cbeb50d3-1f72-4dc8-a111-6fa09ef071af'; // Replace with actual retrieval logic
+
+
+
+      const oneSignalId = 'lol'; 
+
+      //const deviceState = await OneSignal.getDeviceState();
+      //const oneSignalId = deviceState.userId; 
   
       const response = await makeRequest('post', `/auth/login?oneSignalId=${oneSignalId}`, {
         email: email,
