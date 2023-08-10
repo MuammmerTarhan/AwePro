@@ -49,5 +49,11 @@
     "edit": "Edit",
     "delete": "Delete",
     "options": "Options"
+  },
+  "userListScreenLite": {
+    "title": "User List Screen",
+    "edit": "Edit",
+    "delete": "Delete",
+    "options": "Options"
   }
 }
