@@ -94,20 +94,21 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: '#f0f0f0',
     paddingVertical: 10,
-    paddingHorizontal: 10,
+    paddingHorizontal: 3,
     marginBottom: 5,
   },
   tableRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingVertical: 8,
+    paddingHorizontal: 8,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
   },
   tableCell: {
-    fontSize: 12,
-    paddingHorizontal: 10,
+    fontSize: 9,
+    paddingHorizontal: 3,
   },
+  
 
 });

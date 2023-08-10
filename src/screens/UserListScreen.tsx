@@ -91,7 +91,6 @@ const UserListScreen: React.FC<UserListScreenProps> = ({ route, navigation }) =>
             // Render the header row
             return (
               <View style={[globalStyles.tableRow, globalStyles.tableHeader]}>
-                <Text style={globalStyles.tableCell}>ID</Text>
                 <Text style={globalStyles.tableCell} onPress={() => handleSort('name')}>
                   Name{' '}
                   {sortConfig.key === 'name' && (
@@ -102,7 +101,6 @@ const UserListScreen: React.FC<UserListScreenProps> = ({ route, navigation }) =>
                 <Text style={globalStyles.tableCell}>Role</Text>
                 <Text style={globalStyles.tableCell}>Email</Text>
                 <Text style={globalStyles.tableCell}>Department</Text>
-                <Text style={globalStyles.tableCell}>Company</Text>
                 <Text style={globalStyles.tableCell}>Options</Text>
               </View>
             );
@@ -110,13 +108,11 @@ const UserListScreen: React.FC<UserListScreenProps> = ({ route, navigation }) =>
             // Render the user data rows
             return (
               <View style={globalStyles.tableRow}>
-                <Text style={globalStyles.tableCell}>{item.id}</Text>
                 <Text style={globalStyles.tableCell}>{item.name}</Text>
                 <Text style={globalStyles.tableCell}>{item.surname}</Text>
                 <Text style={globalStyles.tableCell}>{item.role?.name}</Text>
                 <Text style={globalStyles.tableCell}>{item.email}</Text>
                 <Text style={globalStyles.tableCell}>{item.department?.name}</Text>
-                <Text style={globalStyles.tableCell}>{item.company?.name}</Text>
                 <View style={globalStyles.tableCell}>
                   <Button title="Edit" onPress={() => handleUpdateUser(item.id)} />
                   <Button title="Delete" onPress={() => handleDeleteUser(item.id)} />
