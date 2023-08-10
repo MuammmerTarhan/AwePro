@@ -10,6 +10,8 @@ import ForgetPasswordScreen from './screens/ForgetPasswordScreen';
 import UserAddScreen from './screens/UserAddScreen';
 import UserListScreen from './screens/UserListScreen';
 import EditPopupScreen from './screens/EditPopupScreen'
+import UserAddScreenLite from './screens/UserAddScreenLite';
+import UserListScreenLite from './screens/UserListScreenLite';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -20,6 +22,8 @@ export type RootStackParamList = {
   UserAddScreen: { accessToken: string };
   UserListScreen: { accessToken: string };
   EditPopupScreen: { userId: number; accessToken: string }; 
+  UserAddScreenLite: { accessToken: string };
+  UserListScreenLite: { accessToken: string };
 };
 
 
@@ -69,9 +73,19 @@ const Navigator: React.FC = () => {
         options={{ title: 'User List' }}
       />
       <Stack.Screen
-        name="EditPopupScreen" // Use the correct name here
+        name="EditPopupScreen"
         component={EditPopupScreen}
         options={{ title: 'Edit User' }}
+      />
+      <Stack.Screen
+          name="UserAddScreenLite"
+          component={UserAddScreenLite}
+          options={{ title: t('userAddScreenLite.title') }}
+        />
+      <Stack.Screen
+        name="UserListScreenLite"
+        component={UserListScreenLite}
+        options={{ title: 'User List Lite' }}
       />
       </Stack.Navigator>
     </NavigationContainer>

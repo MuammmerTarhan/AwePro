@@ -9,16 +9,16 @@ import { globalStyles } from '../styles';
 
 // Define the type for the route params
 type RootStackParamList = {
-  UserAddScreen: { accessToken: string };
+  UserAddScreenLite: { accessToken: string };
 };
 
 // Define the prop type for the AdminScreen component
-type UserAddScreenProps = {
-  route: RouteProp<RootStackParamList, 'UserAddScreen'>;
-  navigation: StackNavigationProp<RootStackParamList, 'UserAddScreen'>;
+type UserAddScreenLiteProps = {
+  route: RouteProp<RootStackParamList, 'UserAddScreenLite'>;
+  navigation: StackNavigationProp<RootStackParamList, 'UserAddScreenLite'>;
 };
 
-const UserAddScreen: React.FC<UserAddScreenProps> = ({ route, navigation }) => {
+const UserAddScreenLite: React.FC<UserAddScreenLiteProps> = ({ route, navigation }) => {
   const { accessToken } = route.params; // Get the accessToken from the route params
 
   const { t } = useTranslation();
@@ -38,7 +38,7 @@ const UserAddScreen: React.FC<UserAddScreenProps> = ({ route, navigation }) => {
   const companies = ['Delta Akıllı Teknolojiler A.Ş.'];
 
   // Array of roles to display in the modal dropdown
-  const roles = ['Manager', 'Admin'];
+  const roles = ['Manager'];
 
   // Function to fetch all users
   const fetchAllUsers = async () => {
@@ -108,7 +108,6 @@ const UserAddScreen: React.FC<UserAddScreenProps> = ({ route, navigation }) => {
 
   // Mapping of human-readable role names to numeric values
   const roleOptions = {
-    Admin: 1,
     Manager: 2,
   };
 
@@ -196,4 +195,4 @@ const UserAddScreen: React.FC<UserAddScreenProps> = ({ route, navigation }) => {
   );
 };
 
-export default UserAddScreen;
+export default UserAddScreenLite;

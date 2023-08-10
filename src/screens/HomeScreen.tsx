@@ -1,31 +1,31 @@
-// src/screens/HomeScreen.tsx
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { View, Text, Button } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../styles';
 
-import config from './../confic';
+const HomeScreen: React.FC = ({ route }) => {
+  const navigation = useNavigation();
+  const { accessToken, name } = route.params; // Make sure you have 'userName' in route.params
 
-// Define the type for the route.params object
-type HomeScreenParams = {
-  name: string;
-};
+  const handleGoToUserAddScreen = () => {
+    navigation.navigate('UserAddScreenLite', { accessToken });
+  };
 
-// Define the custom RouteProp type
-type RootStackParamList = {
-  Home: HomeScreenParams;
-};
-
-const HomeScreen: React.FC = () => {
-  const route = useRoute<RouteProp<RootStackParamList, 'Home'>>();
-
-  const { name } = route.params;
+  const handleGoToUserListScreen = () => {
+    navigation.navigate('UserListScreenLite', { accessToken });
+  };
 
   return (
     <View style={globalStyles.container}>
-      <Text style={globalStyles.text}>Welcome, {name}!</Text>
-      {/* ... */}
-    </View>
+    <Text style={globalStyles.text}>Welcome, {name}!</Text>
+    <View style={{ marginVertical: 10 }}>
+        <Button title="User Add Screen" onPress={handleGoToUserAddScreen} />
+      </View>
+      <View style={{ marginVertical: 10 }}>
+        <Button title="User List Screen" onPress={handleGoToUserListScreen} />
+      </View>
+  </View>
+
   );
 };
 

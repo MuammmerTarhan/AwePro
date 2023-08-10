@@ -30,28 +30,32 @@ const LoginScreen: React.FC = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await makeRequest('post', '/auth/login', {
+      // Assuming you have a way to retrieve the oneSignalId
+      const oneSignalId = 'someOneSignalId'; // Replace with actual retrieval logic
+  
+      const response = await makeRequest('post', `/auth/login?oneSignalId=${oneSignalId}`, {
         email: email,
         password: password,
       });
-
+  
       const { accessToken, user } = response.data;
       console.log('User Data:', user);
       console.log('Access Token:', accessToken);
-
+  
       setAccessToken(accessToken);
-
+  
       if (user.role.name === 'Admin') {
-        navigation.navigate('AdminScreen', { accessToken ,name: user.name });
+        navigation.navigate('AdminScreen', { accessToken, name: user.name });
       } else {
-        navigation.navigate('Home', { name: user.name });
+        navigation.navigate('Home', { accessToken, name: user.name });
       }
-
+  
       Alert.alert('Success', t('loginScreen.loginSuccess'));
     } catch (error: any) {
       Alert.alert('Error', error.message);
     }
   };
+  
 
   const handleActivateUser = () => {
     navigation.navigate('ActivateUser');

@@ -5,10 +5,11 @@ import axios from 'axios';
 import { globalStyles } from '../styles'; // Update this with the correct import path
 import ModalDropdown from 'react-native-modal-dropdown'; // Import the ModalDropdown component
 import { RootStackParamList } from './UserListScreen';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 type EditPopupScreenProps = {
   route: RouteProp<RootStackParamList, 'EditPopupScreen'>;
-  navigation: any;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'EditPopupScreen'>;
 };
 
 const EditPopupScreen: React.FC<EditPopupScreenProps> = ({ route, navigation }) => {
@@ -25,8 +26,8 @@ const EditPopupScreen: React.FC<EditPopupScreenProps> = ({ route, navigation }) 
   };
 
   const roleOptions = {
-    Admin: 0,
-    Manager: 1,
+    Admin: 1,
+    Manager: 2,
   };
 
   const departments = Object.keys(departmentOptions);
@@ -75,6 +76,7 @@ const EditPopupScreen: React.FC<EditPopupScreenProps> = ({ route, navigation }) 
 
       // Handle success, e.g., show a success message
       console.log('User data updated successfully');
+      route.params.onUserUpdated();
       navigation.goBack(); // Navigate back to the previous screen
     } catch (error) {
       // Handle error, e.g., show an error message

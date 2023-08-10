@@ -7,16 +7,15 @@ import axios from 'axios';
 import { globalStyles } from '../styles'; // Import your style definitions
 
 export type RootStackParamList = {
-  UserListScreen: { accessToken: string };
-  EditPopupScreen: { userId: number; accessToken: string; onUserUpdated: () => void };
+  UserListScreenLite: { accessToken: string };
 };
 
-type UserListScreenProps = {
-  route: RouteProp<RootStackParamList, 'UserListScreen'>;
-  navigation: StackNavigationProp<RootStackParamList, 'UserListScreen'>;
+type UserListScreenLiteProps = {
+  route: RouteProp<RootStackParamList, 'UserListScreenLite'>;
+  navigation: StackNavigationProp<RootStackParamList, 'UserListScreenLite'>;
 };
 
-const UserListScreen: React.FC<UserListScreenProps> = ({ route, navigation }) => {
+const UserListScreenLite: React.FC<UserListScreenLiteProps> = ({ route, navigation }) => {
   const { accessToken } = route.params;
   const { t } = useTranslation();
 
@@ -50,25 +49,6 @@ const UserListScreen: React.FC<UserListScreenProps> = ({ route, navigation }) =>
     }
     return 0;
   });
-
-  const handleUpdateUser = (userId: number) => {
-    console.log('accessToken in handleUpdateUser:', accessToken);
-    navigation.navigate('EditPopupScreen', { userId, accessToken, onUserUpdated: fetchAllUsers });
-  };
-
-  const handleDeleteUser = async (userId: number) => {
-    try {
-      await axios.delete(`https://delta.eu-west-1.elasticbeanstalk.com/users/${userId}`, {
-        headers: { Authorization: accessToken },
-      });
-
-      // Refresh the user list after deletion
-      fetchAllUsers();
-    } catch (error) {
-      console.error('Error deleting user:', error);
-      Alert.alert(t('adminScreen.errorTitle'), t('adminScreen.errorMessage'));
-    }
-  };
 
   const handleSort = (key: string) => {
     if (sortConfig.key === key) {
@@ -114,8 +94,6 @@ const UserListScreen: React.FC<UserListScreenProps> = ({ route, navigation }) =>
                 <Text style={globalStyles.tableCell}>{item.email}</Text>
                 <Text style={globalStyles.tableCell}>{item.department?.name}</Text>
                 <View style={globalStyles.tableCell}>
-                  <Button title="Edit" onPress={() => handleUpdateUser(item.id)} />
-                  <Button title="Delete" onPress={() => handleDeleteUser(item.id)} />
                 </View>
               </View>
             );
@@ -127,4 +105,4 @@ const UserListScreen: React.FC<UserListScreenProps> = ({ route, navigation }) =>
   );
 };
 
-export default UserListScreen;
+export default UserListScreenLite;
