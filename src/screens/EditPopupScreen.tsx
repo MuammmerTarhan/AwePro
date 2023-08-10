@@ -20,6 +20,7 @@ const EditPopupScreen: React.FC<EditPopupScreenProps> = ({ route, navigation }) 
   const [selectedDepartment, setSelectedDepartment] = useState<string>(''); // Change type as needed
   const [selectedRole, setSelectedRole] = useState<string>(''); // Change type as needed
 
+  
   const departmentOptions = {
     'Genel Müdürlük': 1,
     'Yazılım Geliştirme': 2,
@@ -126,7 +127,7 @@ const EditPopupScreen: React.FC<EditPopupScreenProps> = ({ route, navigation }) 
         <View style={globalStyles.inputBox}>
           <ModalDropdown
             options={departments}
-            defaultIndex={selectedDepartment ? departments.indexOf(selectedDepartment) : -1}
+            //defaultIndex={selectedDepartment ? departments.indexOf(selectedDepartment) : -1}
             onSelect={(index, value) => setSelectedDepartment(value)}
             style={globalStyles.dropdown}
             textStyle={globalStyles.dropdownText}
@@ -140,7 +141,7 @@ const EditPopupScreen: React.FC<EditPopupScreenProps> = ({ route, navigation }) 
         <View style={globalStyles.inputBox}>
           <ModalDropdown
             options={roles}
-            defaultIndex={selectedRole ? roles.indexOf(selectedRole) : -1}
+            //defaultIndex={selectedRole ? roles.indexOf(selectedRole) : -1}
             onSelect={(index, value) => setSelectedRole(value)}
             style={globalStyles.dropdown}
             textStyle={globalStyles.dropdownText}
