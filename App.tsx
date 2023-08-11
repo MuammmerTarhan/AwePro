@@ -30,6 +30,7 @@ const App: React.FC = () => {
 //    OneSignal.setLogLevel(6, 0); // Verbose level for debugging
 //    OneSignal.setAppId('cbeb50d3-1f72-4dc8-a111-6fa09ef071af'); // Set your OneSignal App ID
 //  }, []);
+//
 
   return (
     <I18nextProvider i18n={i18n}>
