@@ -1,17 +1,23 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { useTranslation } from 'react-i18next';
-import { makeRequest } from './../api';
-import { globalStyles } from '../styles';
+import React, {useState} from 'react';
+import {View, Text, TextInput, Button, StyleSheet, Alert} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {useTranslation} from 'react-i18next';
+import {makeRequest} from './../api';
+import {globalStyles} from '../styles';
 import OneSignal from 'react-native-onesignal';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 interface LanguageOptionProps {
   title: string;
   onPress: () => void;
   selected: boolean;
 }
 
-const LanguageOption: React.FC<LanguageOptionProps> = ({ title, onPress, selected }) => {
+const LanguageOption: React.FC<LanguageOptionProps> = ({
+  title,
+  onPress,
+  selected,
+}) => {
   return (
     <Button
       title={title}
@@ -23,44 +29,45 @@ const LanguageOption: React.FC<LanguageOptionProps> = ({ title, onPress, selecte
 
 const LoginScreen: React.FC = () => {
   const navigation = useNavigation();
-  const { t, i18n } = useTranslation();
+  const {t, i18n} = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [accessToken, setAccessToken] = useState('');
 
   const handleLogin = async () => {
     try {
-
-
-
-      const oneSignalId = 'lol'; 
+      const oneSignalId = await AsyncStorage.getItem('deviceID');
+      console.log('LOG: LOGIN ID: ', oneSignalId);
 
       //const deviceState = await OneSignal.getDeviceState();
-      //const oneSignalId = deviceState.userId; 
-  
-      const response = await makeRequest('post', `/auth/login?oneSignalId=${oneSignalId}`, {
-        email: email,
-        password: password,
-      });
-  
-      const { accessToken, user } = response.data;
+      //const oneSignalId = deviceState.userId;
+
+      const response = await makeRequest(
+        'post',
+        `/auth/login?oneSignalId=${oneSignalId}`,
+        {
+          email: email,
+          password: password,
+        },
+      );
+
+      const {accessToken, user} = response.data;
       console.log('User Data:', user);
       console.log('Access Token:', accessToken);
-  
+
       setAccessToken(accessToken);
-  
+
       if (user.role.name === 'Admin') {
-        navigation.navigate('AdminScreen', { accessToken, name: user.name });
+        navigation.navigate('AdminScreen', {accessToken, name: user.name});
       } else {
-        navigation.navigate('Home', { accessToken, name: user.name });
+        navigation.navigate('Home', {accessToken, name: user.name});
       }
-  
+
       Alert.alert('Success', t('loginScreen.loginSuccess'));
     } catch (error: any) {
       Alert.alert('Error', error.message);
     }
   };
-  
 
   const handleActivateUser = () => {
     navigation.navigate('ActivateUser');
@@ -106,8 +113,14 @@ const LoginScreen: React.FC = () => {
         <Button title={t('loginScreen.loginButton')} onPress={handleLogin} />
       </View>
       <View style={globalStyles.buttonsContainer}>
-        <Button title={t('loginScreen.activateUserButton')} onPress={handleActivateUser} />
-        <Button title={t('loginScreen.forgetPasswordButton')} onPress={handleForgetPassword} />
+        <Button
+          title={t('loginScreen.activateUserButton')}
+          onPress={handleActivateUser}
+        />
+        <Button
+          title={t('loginScreen.forgetPasswordButton')}
+          onPress={handleForgetPassword}
+        />
       </View>
       <View style={globalStyles.languageContainer}>
         <Text style={globalStyles.languageText}>Choose Language:</Text>
